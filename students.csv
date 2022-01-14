@@ -1,0 +1,10 @@
+vorname;nachname;geschlecht;alter;wohnort;status;semester;punktzahl;faecher;kurse
+Hans;Meiser;männlich;50;Frankfurt;Senior;7;2.0;["Informatik","Biologie"];["Stochastik","Vererbungslehre"]
+Vera;Intvehen;weiblich;42;Mainz;Senior;6;1.3;["Mathematik","Informatik"];["Stochastik","Numerische Programmierung"]
+Jürgen;Fliege;männlich;32;Darmstadt;Neuling;2;1.0;["BWL","Germanistik"];["Wirtschaft I","Germanische Literatur"]
+Bärbel;Schäfer;weiblich;36;Offenbach;Student;4;1.7;["Physik","Mathematik"];["Nuklearphysik","Lineare Algebra"]
+Gerd;Krämer;männlich;22;Offenbach;Neuling;1;1.0;["Biologie","Mathematik"];["Stochastik","Analysis I"]
+Hugo;Balder;männlich;24;Mainz;Neuling;2;1.1;["BWL","Mathematik"];["Wirtschaft 2.0","Analysis I"]
+Sandro;Keller;männlich;25;Wiesbaden;Student;4;2.2;["Germanistik","Slavistik"];["Kinderliteratur","Grammatik II"]
+Isabell;Reinig;weiblich;27;Offenbach;Student;3;1.9;["Biologie","Mathematik"];["Genetik","Lineare Algebra"]
+Doro;Schäfer;weiblich;42;Kahl am Main;Senior;8;3.7;["Physik","Mathematik"];["Astrophysik","Stochastik"]
