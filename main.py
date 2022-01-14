@@ -4,6 +4,8 @@ from hiwi import Hiwi
 import CsvHandler as csvH
 import pandas as pd
 import ast
+from CsvHandler import CsvHandler
+import wx
 
 
 class Hauptklasse:
@@ -154,8 +156,14 @@ class Hauptklasse:
 # den grünen Play-Pfeil in der IDE/SEU drücken, damit das Programm startet
 if __name__ == '__main__':
 
+    app = wx.App(False)
+    csvHandler = CsvHandler(None, "Main Gui")
+    app.MainLoop()
+    filename = csvHandler.returnFilename()
+
     haupt = Hauptklasse()
     haupt.lade_studenten()
+
 
     #zeige Daten des 1. Studenten in der Liste
     print()

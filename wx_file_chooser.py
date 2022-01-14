@@ -1,11 +1,13 @@
 import wx                                                                                                                           
 
 class MainWindow(wx.Frame):
-    def __init__(self, parent, title):
+    
 
+    def __init__(self, parent, title):
+        self.pathname = None
         # A "-1" in the size parameter instructs wxWidgets to use the default size.
         # In this case, we select 200px width and the default height.
-        wx.Frame.__init__(self, parent, title=title, size=(200,-1))
+        wx.Frame.__init__(self, parent, title=title, size=(400,400))
 
         # Setting up the menu.
         filemenu= wx.Menu()
@@ -23,21 +25,23 @@ class MainWindow(wx.Frame):
 
     def OnOpen(self,e):
         """ Open a file"""
-        with wx.FileDialog(self, "Open XYZ file", wildcard="XYZ files (*.xyz)|*.xyz",
+        with wx.FileDialog(self, "Open XYZ file", wildcard="*.*",
                            style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
 
             if fileDialog.ShowModal() == wx.ID_CANCEL:
                 return     # the user changed their mind
 
             # Proceed loading the file chosen by the user
-            pathname = fileDialog.GetPath()
+            self.pathname = fileDialog.GetPath()
+            """
             try:
-                with open(pathname, 'r') as file:
+                #with open(pathname, 'r') as file:
                     #self.doLoadDataOrWhatever(file)
-                    print(file.read())
+                #    print(file.read())
             except IOError:
                 wx.LogError("Cannot open file '%s'." % newfile)
-
+            """
+            print(self.pathname)
 
 app = wx.App(False)
 frame = MainWindow(None, "test")
