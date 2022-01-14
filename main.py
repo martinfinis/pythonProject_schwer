@@ -25,9 +25,10 @@ class Hauptklasse:
         TIPPS:  - Achtung: du musst dir überlegen, wie du mit den Listen aus dem CSV umgehen willst
                 - Listen lassen sich über die converter Funktion des Data Frames importieren (schau mal im Internet nach)
         """
-        """..."""
+        """todo"""
 
-        return self.dataFrame
+        #return self.dataFrame
+        pass
 
     def lade_studenten(self):
         """
@@ -42,7 +43,7 @@ class Hauptklasse:
         self.create_data_frame(csv.returnFilename())
 
         # put data from csv file into student objects
-        ""...""
+        """ replace """
 
 
     def map_student_to_hiwi(self, student: st):
@@ -60,12 +61,12 @@ class Hauptklasse:
          *** AUFGABE ***
         Erstelle einen Hiwi-Studenten mit den Daten des Studenten, den die Methode übergeben bekommt.
 
-        TIPPS:  - schau dir die Konstruktoren der Klassen Hiwi und Student an und überlege, wie du unten bei ... 
+        TIPPS:  - schau dir die Konstruktoren der Klassen Hiwi und Student an und überlege, wie du unten bei todo 
                 weiter machen musst, damit aus dem Studenten ein Hiwi erzeugt wird.
                 - der Hiwi erbt all Attribute und Fähigkeiten eines Studenten, hat aber drei neue Attribute: 
                 siehe die obigen Parameter
         """
-        hiwi_student = "...."
+        hiwi_student = "todo."
 
         return hiwi_student
 
@@ -84,10 +85,10 @@ class Hauptklasse:
         """
 
         for i in haupt.studentenListe:
-            "..."
+            "todo"
         print()
-        welcherStudent = "..."
-        hiwi = "..."
+        welcherStudent = "todo"
+        hiwi = "todo"
         print()
         print("Folgender Student ist nun Hiwi: ")
         hiwi.zeige_mich()
@@ -123,29 +124,29 @@ class Hauptklasse:
                 - Tipp 1: iteriere über alle entsprechenden Werte der STudenten und bilde die Mittelwerte
                 - Tipp 2: überlege dir, mit welcher Datenstruktur du recht gut die Häufigkeiten der Fächer zählen kannst
         """
-        average_age = "..."
-        average_semester = "..."
-        anzahl_studenten = "..."
-        faecher_counter = "..."
+        average_age = "todo"
+        average_semester = "todo"
+        anzahl_studenten = "todo"
+        faecher_counter = "todo"
 
-        for i in "...":
-            "..."
+        for i in "todo":
+            "todo"
 
 
-        average_age = "..."
-        average_semester = "..."
-        print('Das Durchschnittsalter aller Studenten beträgt: ' + "...")
-        print('Das Durchschnitts-Semester aller Studenten beträgt: ' + "...")
+        average_age = "todo"
+        average_semester = "todo"
+        print('Das Durchschnittsalter aller Studenten beträgt: ' + "todo")
+        print('Das Durchschnitts-Semester aller Studenten beträgt: ' + "todo")
 
-        "..."
+        "todo"
 
         print()
         print(faecher_counter)
         print()
 
-        "..."
+        "todo"
 
-        print("Das häufigste Fach ist: " + "..." + ". Es kam " + "..." + "x vor.")
+        print("Das häufigste Fach ist: " + "todo" + ". Es kam " + "todo" + "x vor.")
 
 
 
@@ -177,7 +178,7 @@ if __name__ == '__main__':
     #ergänze neue Fächer beim 1. Studenten der Studentenliste
     haupt.studentenListe[0].ergaenze_faecher(neue_faecher)
     # zeige mit ergänzten Fächern
-    print("Hier der Student mit seinen neuen Fächern...\n")
+    print("Hier der Student mit seinen neuen Fächerntodo\n")
     haupt.studentenListe[0].zeige_mich()
     print()
 
