@@ -1,20 +1,45 @@
 import pandas
+from pandas.core.frame import DataFrame
 from student import Student as st
-from hiwi import Hiwi
-import CsvHandler as csvH
+import csv_handler as csvH
 import pandas as pd
 import ast
-from CsvHandler import CsvHandler
+from csv_handler import CsvHandler
 import wx
+import logging
+
+# create logger with 'spam_application'
+logger = logging.getLogger('spam_application')
+logger.setLevel(logging.DEBUG)
+
+# create file handler which logs even debug messages
+fh = logging.FileHandler('spam.log')
+fh.setLevel(logging.DEBUG)
+
+# create console handler with a higher log level
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+
+# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+ch.setFormatter(formatter)
+
+# add the handlers to the logger
+logger.addHandler(fh)
+logger.addHandler(ch)
+logger.debug('####################################### start logging in main 1')
 
 
 class Hauptklasse:
-
+    logger.debug('Hauptklasse 1')
     def __init__(self):
         """
         Constructor mit leerer Studentenliste und leerem Data Frame
         """
-        self.dataFrame: pandas.DataFrame
+        logger.debug('Hauptklasse init 2')
+        #self.dataFrame: pandas.DataFrame
+        self.dataFrame: None
         self.studentenListe = []
 
     def create_data_frame(self, filename):
@@ -28,9 +53,10 @@ class Hauptklasse:
                 - Listen lassen sich über die converter Funktion des Data Frames importieren (schau mal im Internet nach)
         """
         """todo"""
-
-        #return self.dataFrame
-        pass
+        logger.debug('Hauptklasse create_data_frame 3')
+        self.dataFrame = pd.read_csv(filename,sep=';')
+        #return 
+        #pass
 
     def lade_studenten(self):
         """
@@ -40,12 +66,29 @@ class Hauptklasse:
         TIPPS:  - überlege wie du die Daten aus dem Data Frame in die Liste übertragen kannst
                 - die Methode gibt sonst nichts zurück
         """
-        csv = csvH.CsvHandler()
-        csv.initiateFileHandler()
-        self.create_data_frame(csv.returnFilename())
+        logger.debug('Hauptklasse start lade_studenten 4')
+
+        #todo remove file comment
+        #app = wx.App(False)
+        #csvHandler = CsvHandler(None, "Main Gui")
+        #app.MainLoop()
+        #filename = csvHandler.returnFilename()
+        #csv = csvH.CsvHandler(None,"read student file")
+        #csv.initiateFileHandler()
+        filename='C:\\_dev\\python_basics\\pythonProject_schwer\\pythonProject_schwer\\students.csv'
+        self.create_data_frame(filename)
 
         # put data from csv file into student objects
         """ replace """
+        # 1             2       3          4      5        6        7        8           9          10
+        # vorname, nachname, geschlecht, alter, wohnort, status, semester, punktzahl, faecher: [], kurse: []) -> object:
+        #vorname;nachname;geschlecht;alter;wohnort;status;semester;punktzahl;faecher;kurse
+        for index, row in self.dataFrame.iterrows():
+            logger.debug('create student row:'+str(row))
+            value = row['vorname']
+            self.studentenListe.append(st(row[0],row[1], row[2], row[3],row[4],row[5],row[6],row[7],row[8],row[9]))
+        logger.debug(f"Anzahl der Studenten {len(self.studentenListe)}")    
+        logger.debug('Hauptklasse end lade_studenten 4')
 
 
     def map_student_to_hiwi(self, student: st):
@@ -155,27 +198,28 @@ class Hauptklasse:
 
 # den grünen Play-Pfeil in der IDE/SEU drücken, damit das Programm startet
 if __name__ == '__main__':
-
-    app = wx.App(False)
-    csvHandler = CsvHandler(None, "Main Gui")
-    app.MainLoop()
-    filename = csvHandler.returnFilename()
+    logger.debug('start logging in main method 1')
+    #app = wx.App(False)
+    #csvHandler = CsvHandler(None, "Main Gui")
+    #app.MainLoop()
+    #filename = csvHandler.returnFilename()
 
     haupt = Hauptklasse()
     haupt.lade_studenten()
 
 
     #zeige Daten des 1. Studenten in der Liste
-    print()
-    print("Zeigt die Daten des 1. Studenten in der Liste\n")
+    logger.debug(f"Anzahl der Studenten {len(haupt.studentenListe)}")
+    logger.debug("Zeigt die Daten des 1. Studenten in der Liste\n")
+    logger.debug(f"{haupt.studentenListe[0].zeige_mich()}")
     haupt.studentenListe[0].zeige_mich()
-    print()
+    
 
     #die Studenten studieren
     haupt.wir_studieren()
 
     #zeige u.a. veränderte Punktzahl nach Studierzeit des 1. Studenten in der Liste
-    print("So sieht der 1. Student nach der Studierzeit aus:\n")
+    logger.debug(("So sieht der 1. Student nach der Studierzeit aus:\n"))
     haupt.studentenListe[0].zeige_mich()
 
     #Liste mit neuen Fächern

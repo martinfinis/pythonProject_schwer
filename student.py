@@ -1,5 +1,8 @@
 import math
 from mensch import Mensch
+import logging
+logger = logging.getLogger('spam_application')
+logger.debug('----------------------------------- start logging in student 1')
 
 
 class Student(Mensch):
@@ -36,6 +39,16 @@ class Student(Mensch):
               "Ort: " + str(self.wohnort) + "\n"                                        
               "Fächer: " + str(self.faecher) + "\n"
               "Kurse: " + str(self.kurse))
+        logger.debug("Vorname: " + self.vorname + "\n"
+              "Nachname: " + self.nachname + "\n"
+              "Geschlecht: " + self.geschlecht + "\n"
+              "Alter: " + str(self.alter) + "\n"
+              "Status: " + self.status + "\n"
+              "Punktzahl: " + str(self.punktzahl) + "\n"
+              "Semester: " + str(self.semester) + "\n"
+              "Ort: " + str(self.wohnort) + "\n"                                        
+              "Fächer: " + str(self.faecher) + "\n"
+              "Kurse: " + str(self.kurse))      
 
     def studier_zeit(self, studier_zeit):
         """
