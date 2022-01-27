@@ -211,7 +211,7 @@ if __name__ == '__main__':
     logger.debug(f"{haupt.studentenListe[0].zeige_mich()}")
     haupt.studentenListe[0].zeige_mich()
     
-
+    
     #die Studenten studieren
     haupt.wir_studieren()
 
