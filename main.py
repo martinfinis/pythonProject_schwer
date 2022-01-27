@@ -69,13 +69,13 @@ class Hauptklasse:
         logger.debug('Hauptklasse start lade_studenten 4')
 
         #todo remove file comment
-        #app = wx.App(False)
-        #csvHandler = CsvHandler(None, "Main Gui")
-        #app.MainLoop()
-        #filename = csvHandler.returnFilename()
+        app = wx.App(False)
+        csvHandler = CsvHandler(None, "read student file")
+        app.MainLoop()
+        filename = csvHandler.returnFilename()
         #csv = csvH.CsvHandler(None,"read student file")
         #csv.initiateFileHandler()
-        filename='C:\\_dev\\python_basics\\pythonProject_schwer\\pythonProject_schwer\\students.csv'
+        #filename='C:\\_dev\\python_basics\\pythonProject_schwer\\pythonProject_schwer\\students.csv'
         self.create_data_frame(filename)
 
         # put data from csv file into student objects
@@ -199,11 +199,8 @@ class Hauptklasse:
 # den grünen Play-Pfeil in der IDE/SEU drücken, damit das Programm startet
 if __name__ == '__main__':
     logger.debug('start logging in main method 1')
-    #app = wx.App(False)
-    #csvHandler = CsvHandler(None, "Main Gui")
-    #app.MainLoop()
-    #filename = csvHandler.returnFilename()
-
+    
+    
     haupt = Hauptklasse()
     haupt.lade_studenten()
 
