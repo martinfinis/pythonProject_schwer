@@ -2,7 +2,7 @@ from pickle import NONE
 import pandas
 from pandas.core.frame import DataFrame
 from hiwi import Hiwi
-from student import Student as st
+from student import Student 
 import csv_handler as csvH
 import pandas as pd
 import ast
@@ -72,13 +72,13 @@ class Hauptklasse:
         logger.debug('Hauptklasse start lade_studenten 4')
 
         #todo remove file comment
-        app = wx.App(False)
-        csvHandler = CsvHandler(None, "read student file")
-        app.MainLoop()
-        filename = csvHandler.returnFilename()
+        #app = wx.App(False)
+        #csvHandler = CsvHandler(None, "read student file")
+        #app.MainLoop()
+        #filename = csvHandler.returnFilename()
         #csv = csvH.CsvHandler(None,"read student file")
         #csv.initiateFileHandler()
-        #filename='C:\\_dev\\python_basics\\pythonProject_schwer\\pythonProject_schwer\\students.csv'
+        filename='C:\\_dev\\python_basics\\pythonProject_schwer\\pythonProject_schwer\\students.csv'
         self.create_data_frame(filename)
 
         # put data from csv file into student objects
@@ -86,15 +86,17 @@ class Hauptklasse:
         # 1             2       3          4      5        6        7        8           9          10
         # vorname, nachname, geschlecht, alter, wohnort, status, semester, punktzahl, faecher: [], kurse: []) -> object:
         #vorname;nachname;geschlecht;alter;wohnort;status;semester;punktzahl;faecher;kurse
+        # work maf
+        self.dataFrame['faecher']= self.dataFrame.faecher.apply(literal_eval)
         for index, row in self.dataFrame.iterrows():
             logger.debug('create student row:'+str(row))
-            value = row['vorname']
-            self.studentenListe.append(st(row[0],row[1], row[2], row[3],row[4],row[5],row[6],row[7],row[8],row[9]))
+            self.studentenListe.append(Student(row[0],row[1], row[2], row[3],row[4],row[5],row[6],row[7],row[8],row[9]))
+        
         logger.debug(f"Anzahl der Studenten {len(self.studentenListe)}")    
         logger.debug('Hauptklasse end lade_studenten 4')
 
 
-    def map_student_to_hiwi(self, Student: st):
+    def map_student_to_hiwi(self, st: Student):
         """
         Erzeugt ein Hiwi-Objekt aus dem gewählten Studenten-Objekt
         :param student: der gewählte Student wird übergeben
@@ -133,8 +135,8 @@ class Hauptklasse:
         """
         hiwi = NONE
         for i in haupt.studentenListe:
-            hiwi_ja_nein = input(f"soll hiwi werden?{i.name}")
-            if hiwi_ja_nein == ja:
+            hiwi_ja_nein = input(f"soll hiwi werden? {i.nachname} ")
+            if hiwi_ja_nein == 'ja':
                 hiwi = self.map_student_to_hiwi(i)
                 break
 
@@ -181,18 +183,27 @@ class Hauptklasse:
         anzahl_studenten = len(self.dataFrame)
        
 
-        self.dataFrame['faecher2']= self.dataFrame.faecher.apply(literal_eval)
+        #self.dataFrame['faecher2']= self.dataFrame.faecher.apply(literal_eval)
+        
         faecher_dic = {}
-        for i,faecher in self.dataFrame['faecher2']:
-            for fach in faecher:
+        for index,row in self.dataFrame.iterrows():
+            for fach in row['faecher']:
                 if fach in faecher_dic:
                     value = faecher_dic.get(fach)
                     value = value + 1
-                    faecher_dic.update(fach,value)
+                    faecher_dic[fach] = value
                 else:         
-                    faecher_dic.update(fach,1)
-            
+                    faecher_dic[fach] = 1
 
+        #todo: finds only the first value    
+        key_max = ''
+        value_max = 0
+        for key, value in faecher_dic.items():
+            if value > value_max:
+                key_max = key
+                value_max = value
+
+     
 
         #average_age = "todo"
         #average_semester = "todo"
@@ -207,7 +218,7 @@ class Hauptklasse:
 
         
         
-        print("Das häufigste Fach ist: " + "todo" + ". Es kam " + "todo" + "x vor.")
+        print("Das häufigste Fach ist: " + key_max + ". Es kam " + value_max + "x vor.")
 
 
 

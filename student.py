@@ -7,8 +7,7 @@ logger.debug('----------------------------------- start logging in student 1')
 
 class Student(Mensch):
 
-    def __init__(self, vorname, nachname, geschlecht, alter, wohnort, status, semester, punktzahl, faecher: list,
-                 kurse: list) -> object:
+    def __init__(self, vorname, nachname, geschlecht, alter, wohnort, status, semester, punktzahl, faecher: list, kurse: list) -> object:
         """
         :param str status: Neuling, Student, Junior, Senior
         :param int semester: Derzeitiges Semester des Studenten
