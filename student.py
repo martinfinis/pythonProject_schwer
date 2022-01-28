@@ -7,8 +7,8 @@ logger.debug('----------------------------------- start logging in student 1')
 
 class Student(Mensch):
 
-    def __init__(self, vorname, nachname, geschlecht, alter, wohnort, status, semester, punktzahl, faecher: [],
-                 kurse: []) -> object:
+    def __init__(self, vorname, nachname, geschlecht, alter, wohnort, status, semester, punktzahl, faecher: list,
+                 kurse: list) -> object:
         """
         :param str status: Neuling, Student, Junior, Senior
         :param int semester: Derzeitiges Semester des Studenten
@@ -61,7 +61,7 @@ class Student(Mensch):
             # max. 4.0 Punkte möglich
             self.punktzahl = 4.0
 
-    def ergaenze_faecher(self):
+    def ergaenze_faecher(self,faecher):
         """
         *** AUFGABE ***
         SCHAFFE EINE MÖGLICHKEIT, UM DIE FÄCHERLISTE DES STUDENTEN UM WEITERE (x STÜCK) ZU ERGÄNZEN
@@ -72,7 +72,7 @@ class Student(Mensch):
                 - was musst du der Methode mitgeben, damit es variabel von außen funktioniert
                 - denke daran, dass du mit SELF auf die Attribute der Klasse zugreifen kannst
         """
-        pass
+        self.faecher.append(faecher)
 
 
 

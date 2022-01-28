@@ -1,5 +1,7 @@
+from pickle import NONE
 import pandas
 from pandas.core.frame import DataFrame
+from hiwi import Hiwi
 from student import Student as st
 import csv_handler as csvH
 import pandas as pd
@@ -7,6 +9,7 @@ import ast
 from csv_handler import CsvHandler
 import wx
 import logging
+from ast import literal_eval
 
 # create logger with 'spam_application'
 logger = logging.getLogger('spam_application')
@@ -46,7 +49,7 @@ class Hauptklasse:
         """
         Diese Methode öffnet eine CSV-Datei und schreibt die Daten in Pandas Data Frame Objekt
 
-        *** AUFGABE ***
+        *** done AUFGABE ***
         Lade die DAten aus der CSV Datei in ein pandas Data Frame hinein
 
         TIPPS:  - Achtung: du musst dir überlegen, wie du mit den Listen aus dem CSV umgehen willst
@@ -60,7 +63,7 @@ class Hauptklasse:
 
     def lade_studenten(self):
         """
-         *** AUFGABE ***
+         *** done AUFGABE ***
         Nutze den Data Frame (pandas) der Klasse, um die Liste studentenListe mit den Studenten und ihren Werten zu füllen
 
         TIPPS:  - überlege wie du die Daten aus dem Data Frame in die Liste übertragen kannst
@@ -91,7 +94,7 @@ class Hauptklasse:
         logger.debug('Hauptklasse end lade_studenten 4')
 
 
-    def map_student_to_hiwi(self, student: st):
+    def map_student_to_hiwi(self, Student: st):
         """
         Erzeugt ein Hiwi-Objekt aus dem gewählten Studenten-Objekt
         :param student: der gewählte Student wird übergeben
@@ -111,8 +114,8 @@ class Hauptklasse:
                 - der Hiwi erbt all Attribute und Fähigkeiten eines Studenten, hat aber drei neue Attribute: 
                 siehe die obigen Parameter
         """
-        hiwi_student = "todo."
-
+        hiwi_student = Hiwi( st.vorname, st.nachname, st.geschlecht, st.alter, st.wohnort, st.status, st.semester, st.punktzahl
+        , lehrstuhl, professor, st.faecher,st.kurse, betreuteKurse)
         return hiwi_student
 
 
@@ -128,12 +131,16 @@ class Hauptklasse:
                 - der Nutzer soll dann den Index (innerhalb der Liste) angeben, um einen Studenten zu wählen
                 - lasse dann den Hiwi mit den Daten des gewählten Studenten erstellen
         """
-
+        hiwi = NONE
         for i in haupt.studentenListe:
-            "todo"
+            hiwi_ja_nein = input(f"soll hiwi werden?{i.name}")
+            if hiwi_ja_nein == ja:
+                hiwi = self.map_student_to_hiwi(i)
+                break
+
         print()
-        welcherStudent = "todo"
-        hiwi = "todo"
+        #welcherStudent = "todo"
+        #hiwi = "todo"
         print()
         print("Folgender Student ist nun Hiwi: ")
         hiwi.zeige_mich()
@@ -169,28 +176,37 @@ class Hauptklasse:
                 - Tipp 1: iteriere über alle entsprechenden Werte der STudenten und bilde die Mittelwerte
                 - Tipp 2: überlege dir, mit welcher Datenstruktur du recht gut die Häufigkeiten der Fächer zählen kannst
         """
-        average_age = "todo"
-        average_semester = "todo"
-        anzahl_studenten = "todo"
-        faecher_counter = "todo"
+        average_age = self.dataFrame['alter'].mean()
+        average_semester = self.dataFrame['semester'].mean()
+        anzahl_studenten = len(self.dataFrame)
+       
 
-        for i in "todo":
-            "todo"
+        self.dataFrame['faecher2']= self.dataFrame.faecher.apply(literal_eval)
+        faecher_dic = {}
+        for i,faecher in self.dataFrame['faecher2']:
+            for fach in faecher:
+                if fach in faecher_dic:
+                    value = faecher_dic.get(fach)
+                    value = value + 1
+                    faecher_dic.update(fach,value)
+                else:         
+                    faecher_dic.update(fach,1)
+            
 
 
-        average_age = "todo"
-        average_semester = "todo"
-        print('Das Durchschnittsalter aller Studenten beträgt: ' + "todo")
-        print('Das Durchschnitts-Semester aller Studenten beträgt: ' + "todo")
+        #average_age = "todo"
+        #average_semester = "todo"
+        print('Das Durchschnittsalter aller Studenten beträgt: ' + average_age)
+        print('Das Durchschnitts-Semester aller Studenten beträgt: ' + average_semester)
 
-        "todo"
+        faecher_counter = len(faecher_dic)
 
         print()
         print(faecher_counter)
         print()
 
-        "todo"
-
+        
+        
         print("Das häufigste Fach ist: " + "todo" + ". Es kam " + "todo" + "x vor.")
 
 
