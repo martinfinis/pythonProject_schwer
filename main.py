@@ -260,7 +260,8 @@ if __name__ == '__main__':
 
     #erzeuge einen Hiwi aus dem Studenten
     print("Wer wird Hiwi?\n")
-    hiwi_student = haupt.map_student_to_hiwi(haupt.wer_wird_hiwi())
+    #hiwi_student = haupt.map_student_to_hiwi(haupt.wer_wird_hiwi())
+    hiwi_student = haupt.wer_wird_hiwi()
     hiwi_student.zeige_professor()
     hiwi_student.zeige_lehrstuhl()
     hiwi_student.zeige_betreuteKurse()

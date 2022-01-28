@@ -71,7 +71,7 @@ class Student(Mensch):
                 - was musst du der Methode mitgeben, damit es variabel von außen funktioniert
                 - denke daran, dass du mit SELF auf die Attribute der Klasse zugreifen kannst
         """
-        self.faecher.append(faecher)
+        self.faecher.extend(faecher)
 
 
 
